@@ -1,9 +1,7 @@
 package com.assignment.moja_car_wash.domain.entities;
 
-import com.assignment.moja_car_wash.services.CarStatus;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.assignment.moja_car_wash.states.CarState;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @Table(name = "customers")
-public class CustomerEntity {
+public class CarEntity {
 
     @Id
     private String uuid;
@@ -25,8 +23,8 @@ public class CustomerEntity {
     private String contactNumber;
     private String description;
     private String preferredWash;
-    private String carStatus = CarStatus.PRE_WASH.toString();
+    private String carState = CarState.PRE_WASH.toString();
     private Double price = null;
     private Long employeeId = null;
-    private Boolean isDoneWashing;
+    private Boolean isDoneWashing = false;
 }

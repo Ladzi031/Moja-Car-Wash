@@ -20,5 +20,5 @@ public class EmployeeEntity {
     private Boolean WashingCar;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id")
-    private CustomerEntity customerEntity;
+    private CarEntity carEntity;
 }

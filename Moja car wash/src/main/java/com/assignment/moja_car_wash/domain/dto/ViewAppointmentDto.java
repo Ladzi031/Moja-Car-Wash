@@ -1,6 +1,6 @@
 package com.assignment.moja_car_wash.domain.dto;
 
-import com.assignment.moja_car_wash.domain.entities.CustomerEntity;
+import com.assignment.moja_car_wash.domain.entities.CarEntity;
 import com.assignment.moja_car_wash.domain.entities.EmployeeEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,6 +12,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ViewAppointmentDto {
-   private CustomerEntity customerEntity;
-   private EmployeeEntity employeeEntity;
+    private CarEntity carEntity;
+    private EmployeeEntity employeeEntity;
 }

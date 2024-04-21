@@ -1,6 +1,6 @@
 package com.assignment.moja_car_wash.services;
 
-import com.assignment.moja_car_wash.domain.entities.CustomerEntity;
+import com.assignment.moja_car_wash.domain.entities.CarEntity;
 
 import java.util.List;
 
@@ -13,13 +13,13 @@ public interface CustomerService {
     Double COMPLEX_CLEAN_PRICE = 420.0;
 
 
-    CustomerEntity setAppointment(CustomerEntity appointment);
+    CarEntity setAppointment(CarEntity appointment);
 
-   CustomerEntity viewAppointment(String uniqueKey);
+    CarEntity viewAppointment(String uniqueKey);
 
-    List<CustomerEntity> getAllByCarStatus(String carStatus);
+    List<CarEntity> findAllByCarState(String carStatus);
 
-    void saveAll(List<CustomerEntity> cars);
+    void saveAll(List<CarEntity> cars);
 
 
 }

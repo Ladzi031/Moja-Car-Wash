@@ -22,7 +22,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @PostConstruct
-    public void populateRepository(){
+    public void populateRepository() {
         List<EmployeeEntity> employeeEntity = createFakeEmployees();
         employeeRepository.saveAll(employeeEntity);
     }
@@ -56,7 +56,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     public void delegateEmployees(List<Long> employeeIdList) {
         List<EmployeeEntity> empToUp = new ArrayList<>();
 
-        if(!employeeIdList.isEmpty()) {
+        if (!employeeIdList.isEmpty()) {
             StreamSupport.stream(employeeRepository.findAllById(employeeIdList).spliterator(), false)
                     .forEach(empToUp::add);
             empToUp.forEach(e -> e.setWashingCar(false));

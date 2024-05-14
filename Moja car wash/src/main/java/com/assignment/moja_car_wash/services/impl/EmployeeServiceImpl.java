@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @Service
@@ -53,13 +54,13 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public void delegateEmployees(List<Long> employeeIdList) {
+    public void scheduleEmployees(List<Long> employeeIdList, Boolean isWashingCar) {
         List<EmployeeEntity> empToUp = new ArrayList<>();
 
         if (!employeeIdList.isEmpty()) {
             StreamSupport.stream(employeeRepository.findAllById(employeeIdList).spliterator(), false)
                     .forEach(empToUp::add);
-            empToUp.forEach(e -> e.setWashingCar(false));
+            empToUp.forEach(e -> e.setWashingCar(isWashingCar));
             employeeRepository.saveAll(empToUp);
             employeeIdList.clear();
         }
@@ -85,7 +86,19 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public void save(EmployeeEntity employeeEntity) {
-        employeeRepository.save(employeeEntity);
+    public EmployeeEntity save(EmployeeEntity employeeEntity) {
+        return employeeRepository.save(employeeEntity);
+    }
+
+    @Override
+    public void deleteEmployee(String employee_id) {
+
+        employeeRepository.deleteById(Long.valueOf(employee_id));
+    }
+
+    @Override
+    public List<EmployeeEntity> findAllEmployees() {
+        return StreamSupport.stream(employeeRepository.findAll().spliterator(), false)
+                .collect(Collectors.toList());
     }
 }

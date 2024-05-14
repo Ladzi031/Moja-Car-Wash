@@ -11,8 +11,9 @@ import java.util.Set;
 @Service
 public class CreateSuperUser {
     private final SupervisorRepository supervisorRepository;
-    private  final PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
     private final Set<String> roles = Set.of("ROLE_ADMIN");
+
     public CreateSuperUser(SupervisorRepository supervisorRepository, PasswordEncoder passwordEncoder) {
         this.supervisorRepository = supervisorRepository;
         this.passwordEncoder = passwordEncoder;
@@ -20,9 +21,9 @@ public class CreateSuperUser {
 
     @PostConstruct
     public void init() {
-        for(int i = 0; i < 3; i++) {
-            String name = "name"+ i;
-            String password = "password"+ i;
+        for (int i = 0; i < 3; i++) {
+            String name = "name" + i;
+            String password = "password" + i;
             String email = "example@gmail.com";
             SupervisorEntity superUser = SupervisorEntity.builder()
                     .username(name)

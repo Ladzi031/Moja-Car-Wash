@@ -27,12 +27,12 @@ public class NormalBusinessOperationsImpl implements BusinessOperations {
     @Scheduled(fixedRate = 5000L) // 600000L  , every ten minutes
     public void taskScheduler() {
 
-
         List<Long> employeeIdList = new ArrayList<>();
         List<CarEntity> cars = new ArrayList<>();
         List<CarEntity> customerCars = customerService.findAllByCarState(CarState.WASHING.toString());
 
         customerCars.stream()
+                .parallel()
                 .filter(CarEntity::getIsDoneWashing)
                 .forEach(c -> {
                     c.setCarState(CarState.COMPLETED.toString());
@@ -40,7 +40,7 @@ public class NormalBusinessOperationsImpl implements BusinessOperations {
                     employeeIdList.add(c.getEmployeeId());
                 });
 
-        employeeService.delegateEmployees(employeeIdList);
+        employeeService.scheduleEmployees(employeeIdList, false);
         customerService.saveAll(cars);
 
         employeeIdList.clear();
@@ -73,12 +73,11 @@ public class NormalBusinessOperationsImpl implements BusinessOperations {
                 employeeIdList.add(employee.getEmployee_id());
             }
 
-            employeeService.delegateEmployees(employeeIdList);
+            employeeService.scheduleEmployees(employeeIdList, true);
             customerService.saveAll(cars);
             employeeIdList.clear();
             cars.clear();
         }
-
     }
 
 }

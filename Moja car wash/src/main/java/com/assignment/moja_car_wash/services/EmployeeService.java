@@ -6,8 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface EmployeeService {
-    void delegateEmployees(List<Long> employeeId);
-
+    void scheduleEmployees(List<Long> employeeId, Boolean isWashingCar);
 
     Optional<EmployeeEntity> findById(Long employeeId);
 
@@ -15,5 +14,9 @@ public interface EmployeeService {
 
     List<EmployeeEntity> findAllAvailableEmployees();
 
-    void save(EmployeeEntity employeeEntity);
+    EmployeeEntity save(EmployeeEntity employeeEntity);
+
+    void deleteEmployee(String employee);
+
+    List<EmployeeEntity> findAllEmployees();
 }

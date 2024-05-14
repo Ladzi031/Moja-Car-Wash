@@ -1,8 +1,10 @@
 package com.assignment.moja_car_wash.services.impl;
 
 import com.assignment.moja_car_wash.domain.entities.CarEntity;
+import com.assignment.moja_car_wash.domain.entities.EmployeeEntity;
 import com.assignment.moja_car_wash.repository.CarRepository;
 import com.assignment.moja_car_wash.services.CarWashSupervisorService;
+import com.assignment.moja_car_wash.services.EmployeeService;
 import com.assignment.moja_car_wash.states.CarState;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +18,11 @@ public class SupervisorServiceImpl implements CarWashSupervisorService {
 
     private final CarRepository carRepository;
 
-    public SupervisorServiceImpl(CarRepository carRepository) {
+    private final EmployeeService employeeService;
+
+    public SupervisorServiceImpl(CarRepository carRepository, EmployeeService employeeService) {
         this.carRepository = carRepository;
+        this.employeeService = employeeService;
     }
 
     @Override
@@ -45,8 +50,18 @@ public class SupervisorServiceImpl implements CarWashSupervisorService {
     }
 
     @Override
-    public boolean existsByTag(String carTag) {
-        return carRepository.existsById(carTag);
+    public EmployeeEntity addEmployee(EmployeeEntity employee) {
+        return employeeService.save(employee);
+    }
+
+    @Override
+    public void deleteEmployee(String employee_id) {
+        employeeService.deleteEmployee(employee_id);
+    }
+
+    @Override
+    public List<EmployeeEntity> viewAllEmployees() {
+        return employeeService.findAllEmployees();
     }
 
 

@@ -9,7 +9,6 @@ public class TestDataUtils {
                 .name("john")
                 .email("example@gmail.com")
                 .contactNumber("0802434")
-                .tag(3L)
                 .build();
     }
 }

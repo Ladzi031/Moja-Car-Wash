@@ -1,3 +1,4 @@
+
 package com.assignment.moja_car_wash.security;
 
 import com.assignment.moja_car_wash.domain.entities.SupervisorEntity;
@@ -10,6 +11,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class SuperUserToUserDetails implements UserDetails {
+    // this class is used to convert the super-user-entity to into a UserDetails object...
+
     private final String name;
     private final String password;
 
@@ -56,3 +59,4 @@ public class SuperUserToUserDetails implements UserDetails {
         return true;
     }
 }
+

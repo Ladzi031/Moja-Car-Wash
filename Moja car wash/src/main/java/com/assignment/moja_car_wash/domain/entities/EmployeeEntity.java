@@ -17,8 +17,6 @@ public class EmployeeEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "employee_seq")
     private Long employee_id;
     private String name;
-    private Boolean WashingCar;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id")
-    private CarEntity carEntity;
+    private Boolean WashingCar = false;
+
 }

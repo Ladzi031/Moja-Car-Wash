@@ -22,7 +22,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         this.employeeRepository = employeeRepository;
     }
 
-    @PostConstruct
+     @PostConstruct
     public void populateRepository() {
         List<EmployeeEntity> employeeEntity = createFakeEmployees();
         employeeRepository.saveAll(employeeEntity);
@@ -31,22 +31,22 @@ public class EmployeeServiceImpl implements EmployeeService {
     private List<EmployeeEntity> createFakeEmployees() {
         List<EmployeeEntity> list = new ArrayList<>();
         EmployeeEntity em = EmployeeEntity.builder()
-                .name("john")
+                .name("Sibongiseni")
                 .WashingCar(false)
                 .build();
         list.add(em);
         EmployeeEntity em2 = EmployeeEntity.builder()
-                .name("farooq")
+                .name("Itumeleng")
                 .WashingCar(false)
                 .build();
         list.add(em2);
         EmployeeEntity em3 = EmployeeEntity.builder()
-                .name("james")
+                .name("Ofentse")
                 .WashingCar(false)
                 .build();
         list.add(em3);
         EmployeeEntity em4 = EmployeeEntity.builder()
-                .name("hamilton")
+                .name("Thabo")
                 .WashingCar(false)
                 .build();
         list.add(em4);

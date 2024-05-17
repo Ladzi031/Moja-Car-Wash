@@ -6,6 +6,7 @@ import jakarta.annotation.PostConstruct;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -21,17 +22,36 @@ public class CreateSuperUser {
 
     @PostConstruct
     public void init() {
-        for (int i = 0; i < 3; i++) {
-            String name = "name" + i;
-            String password = "password" + i;
-            String email = "example@gmail.com";
-            SupervisorEntity superUser = SupervisorEntity.builder()
-                    .username(name)
-                    .password(passwordEncoder.encode(password))
-                    .email(email)
-                    .roles(roles)
-                    .build();
-            supervisorRepository.save(superUser);
-        }
+        SupervisorEntity mzwandile = SupervisorEntity.builder()
+                .username("mzwandile")
+                .password(passwordEncoder.encode("password1"))
+                .email("mzwandile@gmail.com")
+                .roles(roles)
+                .build();
+
+        SupervisorEntity ladzani = SupervisorEntity.builder()
+                .username("ladzani")
+                .password(passwordEncoder.encode("password2"))
+                .email("ladzani@gmail.com")
+                .roles(roles)
+                .build();
+
+        SupervisorEntity phiwa = SupervisorEntity.builder()
+                .username("phiwa")
+                .password(passwordEncoder.encode("password3"))
+                .email("phiwa@gmail.com")
+                .roles(roles)
+                .build();
+
+        SupervisorEntity germina = SupervisorEntity.builder()
+                .username("germina")
+                .password(passwordEncoder.encode("password4"))
+                .email("germina@gmail.com")
+                .roles(roles)
+                .build();
+
+        List<SupervisorEntity> admins = List.of(mzwandile, ladzani, phiwa, germina);
+        supervisorRepository.saveAll(admins);
     }
+
 }

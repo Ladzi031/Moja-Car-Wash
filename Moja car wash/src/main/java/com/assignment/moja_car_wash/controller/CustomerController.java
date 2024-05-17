@@ -44,10 +44,12 @@ public class CustomerController {
         CarEntity carEntity = customerService.viewAppointment(id);
 
         if (carEntity != null) {
-            Optional<EmployeeEntity> employeeAssigned = employeeService.findById(carEntity.getEmployeeId());
-            if (employeeAssigned.isPresent()) {
-                ViewAppointmentDto viewAppointmentDto = createViewAppointmentDto(carEntity, employeeAssigned);
-                return new ResponseEntity<>(viewAppointmentDto, HttpStatus.FOUND);
+            if(carEntity.getEmployeeId() != null) {
+                Optional<EmployeeEntity> employeeAssigned = employeeService.findById(carEntity.getEmployeeId());
+                if (employeeAssigned.isPresent()) {
+                    ViewAppointmentDto viewAppointmentDto = createViewAppointmentDto(carEntity, employeeAssigned);
+                    return new ResponseEntity<>(viewAppointmentDto, HttpStatus.FOUND);
+                }
             }
             return new ResponseEntity<>(createViewAppointmentDto(carEntity), HttpStatus.FOUND);
         }

@@ -1,4 +1,3 @@
-
 package com.assignment.moja_car_wash.security;
 
 import com.assignment.moja_car_wash.domain.entities.SupervisorEntity;

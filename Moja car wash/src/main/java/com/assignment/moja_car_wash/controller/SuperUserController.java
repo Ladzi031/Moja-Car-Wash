@@ -8,9 +8,9 @@ import com.assignment.moja_car_wash.domain.entities.EmployeeEntity;
 import com.assignment.moja_car_wash.mapper.Mapper;
 import com.assignment.moja_car_wash.services.CarWashSupervisorService;
 import com.assignment.moja_car_wash.states.CarState;
-import lombok.extern.java.Log;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/admin")
-@Log
+@PreAuthorize("hasAuthority('ROLE_ADMIN')")
 public class SuperUserController {
 
     private final CarWashSupervisorService supervisorService;

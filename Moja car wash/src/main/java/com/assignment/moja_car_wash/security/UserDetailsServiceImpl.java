@@ -1,5 +1,4 @@
-
- package com.assignment.moja_car_wash.security;
+package com.assignment.moja_car_wash.security;
 
 import com.assignment.moja_car_wash.domain.entities.SupervisorEntity;
 import com.assignment.moja_car_wash.repository.SupervisorRepository;
@@ -21,6 +20,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         Optional<SupervisorEntity> superUser = supervisorRepository.findByUsername(username);
-        return superUser.map(SuperUserToUserDetails::new).orElseThrow(() -> new UsernameNotFoundException("user not found" + username));
+        return superUser.map(SuperUserToUserDetails::new).orElseThrow(() -> new UsernameNotFoundException("user not found " + username));
     }
 }

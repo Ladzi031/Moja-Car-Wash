@@ -18,8 +18,8 @@ public class CarDto {
     private String preferredWash;
     private String contactNumber;
     private String carState = CarState.PRE_WASH.toString();
-    //{uuid: '6737e041-26ad-4c1f-996a-c305cab00e90
 }
+// eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuYW1lMSIsImlhdCI6MTcxNTc3MTA0MywiZXhwIjoxNzE1Nzc0NjQzfQ.0croR23O2HINNulHA0Gd2EMMU85MzlTSbAwxNfatrzw
 /*
 {
    "name": "james",
@@ -28,5 +28,4 @@ public class CarDto {
     "preferredWash": "basic clean",
     "contactNumber": "12345"
 }
-
-* */
+ */

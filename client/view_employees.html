@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+    />
+    <link rel="stylesheet" href="css/admin.css" />
+
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+      function fetchData() {
+        const accesToken = localStorage.getItem("token");
+        console.log("access token is: " + accesToken);
+        axios
+          .get("http://localhost:8181/admin/employees", {
+            headers: { Authorization: "Bearer " + accesToken },
+          })
+          .then((response) => {
+            if (response.status === 200) {
+              generateRows(response.data);
+            } else {
+              console.error("Failed to fetch data");
+            }
+          })
+          .catch((error) => {
+            console.error("Error fetching data:", error);
+          });
+      }
+
+      function generateRows(data) {
+        const tbody = document.querySelector("tbody");
+        let rowsHTML = "";
+        data.forEach((entry) => {
+          const text = entry.washingCar ? "WASHING_CAR" : "IDLING";
+          rowsHTML += `
+        <tr>
+          <td class="people">
+            <div class="people-de">
+              <h5>${entry.employee_id}</h5>
+            </div>
+          </td>
+          <td class="car-tag">
+            <p>${entry.name}</p>
+          <td class="car-status active">
+            <p>${text}</p>
+          </td>
+        </tr>
+      `;
+        });
+        tbody.innerHTML = rowsHTML;
+      }
+      fetchData();
+    </script>
+
+    <section id="menu">
+      <div class="logo">
+        <div id="logo"></div>
+        <h2>Moja-CarWash</h2>
+      </div>
+      <div class="items">
+        <li>
+          <i class="fas fa-chart-pie"></i><a href="admin_view.html">Home</a>
+        </li>
+        <li>
+          <i class="fas fa-check"></i><a href="update_car.html">Sign Off Car</a>
+        </li>
+        <li>
+          <i class="fas fa-user"></i
+          ><a href="add_employee.html">Add Employee</a>
+        </li>
+        <li>
+          <i class="fas fa-times"></i
+          ><a href="layoff_employee.html">Layoff Employee</a>
+        </li>
+        <li>
+          <i class="fas fa-users"></i
+          ><a href="view_employees.html">view all Employees</a>
+        </li>
+        <li>
+          <i class="fas fa-car"></i
+          ><a href="admin_view_cars.html">view cars by car-status</a>
+        </li>
+      </div>
+    </section>
+
+    <section id="inteface">
+      <div class="navigation">
+        <div class="n1">
+          <div class="search">
+            <i class="fas fa-search"></i>
+            <input type="text" name="search" id="search" placeholder="search" />
+          </div>
+        </div>
+        <div class="profile">
+          <i class="fas fa-bell"></i>
+          <span>admin user</span>
+        </div>
+      </div>
+      <h3 class="i-name">Supervisor Dashboard</h3>
+      <div class="values">
+        <div class="val-box">
+          <i class="fas fa-users"></i>
+          <div>
+            <h3>8,267</h3>
+            <span>New Users</span>
+          </div>
+        </div>
+        <div class="val-box">
+          <i class="fas fa-users"></i>
+          <div>
+            <h3>8,267</h3>
+            <span>New Users</span>
+          </div>
+        </div>
+        <div class="val-box">
+          <i class="fas fa-users"></i>
+          <div>
+            <h3>8,267</h3>
+            <span>New Users</span>
+          </div>
+        </div>
+        <div class="val-box">
+          <i class="fas fa-users"></i>
+          <div>
+            <h3>8,267</h3>
+            <span>New Users</span>
+          </div>
+        </div>
+      </div>
+      <div class="board">
+        <table width="100%">
+          <thead>
+            <tr>
+              <td>employee ID</td>
+              <td>nick Name</td>
+              <td>employee Status</td>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+  </body>
+</html>

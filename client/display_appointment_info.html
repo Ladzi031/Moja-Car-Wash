@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900"
+      rel="stylesheet"
+    />
+    <title>display Appointment info</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: whitesmoke; /* Light gray background */
+        color: #333333; /* Dark gray text */
+      }
+      header {
+        width: 100%;
+        height: 10vh;
+      }
+      header h2 {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h2 class="my-auto text-dark">Your overrall appointment information</h2>
+    </header>
+    <div id="show-data"></div>
+    <!--
+        buttons for confirming...
+    -->
+
+    <script>
+      const data = JSON.parse(localStorage.getItem("data"));
+      localStorage.removeItem("data");
+      console.log(data);
+      let displayInfo = `
+      <div
+      class="container my-auto mx-auto d-flex justify-content-center align-items-center"
+    >
+      <div class="col mx-auto align-items-center">
+        <div class="col">
+          <div class="col-md-12">
+            <div class="card flex-md-row mb-4 box-shadow h-md-250">
+              <div class="card-body d-flex flex-column align-items-start">
+                <strong class="d-inline-block mb-2 text-primary">Car</strong>
+                <h3 class="mb-0">
+                  <a class="text-dark" href="#">Car appointment Info</a>
+                </h3>
+                <div class="mb-1 text-muted">${Date()}</div>
+                <table>
+                    <tr>
+                      <tr>
+                      <td>your name: </td>
+                      <td>${data.carEntity.name}</td>
+                      </tr>
+                      <td>car status: </td>
+                      <td><strong>${data.carEntity.carState}</strong></td>
+                      </tr>
+                      <tr>
+                      <td>your contact Numbers: </td>
+                      <td>${data.carEntity.contactNumber}</td>
+                      </tr>
+                      <tr>
+                      <td>your email: </td>
+                      <td>${data.carEntity.email}</td>
+                      </tr>
+                      <tr>
+                      <td>your preferred wash: </td>
+                      <td>${data.carEntity.preferredWash}</td>
+                      </tr>
+                      <tr>
+                      <td>The amount due: </td>
+                      <td><strong>R ${data.carEntity.price}.00</strong></td>
+                      </tr>
+                      <tr>
+                      <tr>
+                      <td>car-tag: </td>
+                      <td>${data.carEntity.uuid}</td>
+                      </tr>
+                      <tr>
+                      <td>what you said: </td>
+                      <td>${data.carEntity.description}</td>
+                      </tr>
+                  </table>
+              </div>
+              <img
+                src="img/car-1.jpg"
+                class="card-img-right flex-auto d-none d-md-block img-fluid"
+                style="width: 40%; height: 10%"
+                alt="Card image cap"
+              />
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="card flex-md-row mb-4 box-shadow h-md-250">
+              <div class="card-body d-flex flex-column align-items-start">
+                <strong class="d-inline-block mb-2 text-success"
+                  >employee</strong
+                >
+                <h3 class="mb-0" id="car-owner">
+                  <a class="text-dark" href="#"
+                    >details of employee washing the car</a
+                  >
+                </h3>
+                <div class="mb-1 text-muted">${Date()}</div>
+                <p class="card-text mb-auto">
+                  <table>
+                    <tr>
+                      <td>employee-ID  </td>
+                      <td>${
+                        data.employeeEntity === null
+                          ? "No employee assigend yet"
+                          : data.employeeEntity.employee_id
+                      }</td>
+                      </tr>
+                      <tr>
+                      <td>employee name </td>
+                      <td>${
+                        data.employeeEntity === null
+                          ? "No employee assigend yet"
+                          : data.employeeEntity.name
+                      }</td>
+                      </tr>
+                    </table>
+                  </p>
+              </div>
+              <img
+                src="img/worker2.jpg"
+                class="card-img-right flex-auto d-none d-md-block img-fluid"
+                style="width: 40%; height: auto"
+                alt="Card image cap"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      `;
+
+      if (data.carEntity.carState === "COMPLETED") {
+        let extra = `<p style="text-align: center; font-size: 20px"><strong>your car has been washed please go and pay at the car-wash cashier, provide your car-tag to get you car keys</strong></p>`;
+        displayInfo += extra;
+      }
+      const myDiv = document.getElementById("show-data");
+
+      myDiv.innerHTML = displayInfo;
+    </script>
+  </body>
+</html>

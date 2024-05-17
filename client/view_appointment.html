@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>View Car Wash Appointment</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #52b5ed; /* Light gray background */
+        color: #333333; /* Dark gray text */
+      }
+
+      .container {
+        max-width: 500px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #ffffff; /* White background */
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+      }
+
+      h2 {
+        color: #0066cc; /* Dark blue heading */
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #333333; /* Dark gray text */
+      }
+
+      input[type="text"],
+      input[type="email"],
+      input[type="tel"],
+      select,
+      textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #cccccc; /* Light gray border */
+        border-radius: 5px;
+        box-sizing: border-box;
+      }
+
+      select {
+        appearance: none; /* Remove default appearance for select */
+        background-image: url('data:image/svg+xml;utf8,<svg fill="#666" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>'); /* Custom arrow icon */
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+        background-size: 20px;
+      }
+
+      textarea {
+        resize: vertical; /* Allow vertical resizing */
+      }
+
+      input[type="submit"] {
+        background-color: #0066cc; /* Dark blue button */
+        color: #ffffff; /* White text */
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #0052a3; /* Darker blue on hover */
+      }
+    </style>
+  </head>
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+      function viewAppointment(event) {
+        // Prevent the default form submission
+        event.preventDefault();
+        console.log(event);
+        // Get form data
+        let formData = {
+          tag: document.getElementById("tag").value,
+        };
+
+        // Validate form fields
+        if (!formData.tag) {
+          // Display error message or perform validation logic
+          alert("Please fill out all car-tag field.");
+          return;
+        }
+
+        // Send the data to the server using Axios
+        const url = "http://localhost:8181/customer/appointments/{id}";
+        console.log("tag id is: " + formData.tag);
+        console.log("new url is: " + url.replace("{id}", formData.tag));
+        axios
+          .get(url.replace("{id}", formData.tag), {
+            headers: {
+              Accept: "application/json",
+            },
+            validateStatus: (status) => status < 400,
+          })
+          .then((response) => {
+            if (response.status === 302) {
+              const redirectedUrl = response.headers.location;
+              console.log("Redirected URL:", redirectedUrl);
+
+              const data = response.data;
+              localStorage.setItem("data", JSON.stringify(data));
+              window.location.href = "display_appointment_info.html";
+            } else {
+              const data = response.data;
+              console.log(data);
+            }
+
+            /*
+            2cd8cd4e-2fea-42b8-a623-9bb3632d59b7
+            */
+          })
+          .catch((error) => {
+            // Request failed, handle error
+            console.error("Request failed:", error);
+            // Example: Display an error message to the user
+            alert("Failed to submit the form. Please try again later.");
+          });
+      }
+    </script>
+    <div class="container">
+      <h2>Track Appointment</h2>
+      <form id="carWashForm">
+        <div class="form-group">
+          <input
+            type="text"
+            id="tag"
+            name="tag"
+            placeholder="car-tag ID"
+            required
+          />
+        </div>
+
+        <button
+          type="submit"
+          style="
+            background-color: #0056b3; /* Dark blue button */
+            color: #ffffff; /* White text */
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: block;
+            margin: 0 auto;
+          "
+          onclick="viewAppointment(event)"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
+  </body>
+</html>

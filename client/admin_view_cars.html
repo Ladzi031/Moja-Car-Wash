@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="css/updateAdmin.css">
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+    />
+    
+    <title>Document</title>
+</head>
+<body>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+       // we just get the data and save it in local storage and redirect to the other page for viewing...
+      function findAllCarsByState(event) {
+        event.preventDefault();
+        console.log(event);
+      
+        let formData = {
+          state: document.getElementById("car-status").value,
+        };
+
+        if (!formData.state) {
+          alert("Please fill out all required fields.");
+          return;
+        }
+        const url = "http://localhost:8181/admin/cars/{state}"
+        const accesToken = localStorage.getItem("token");
+        console.log("access token is: " + accesToken);
+        axios
+          .get(url.replace("{state}", formData.state),  {headers: {Authorization: "Bearer "+ accesToken}})
+          .then((response) => {
+            const data = response.data;
+            localStorage.setItem("data", JSON.stringify(data));
+            console.log("Response from server:", data);
+            window.location.href = "admin_cars.html";
+          })
+          .catch((error) => {
+            
+            console.error("Request failed:", error);
+            
+            alert("Failed to submit the form. Please try again later.");
+          });
+      }
+    </script>
+    <section id="menu">
+      <div class="logo">
+        <div id="logo"></div>
+        <h2>Moja-CarWash</h2>
+      </div>
+      <div class="items">
+        <li><i class="fas fa-chart-pie"></i><a href="admin_view.html">Home</a></li>
+        <li><i class="fas fa-check"></i><a href="update_car.html">Check Off Car</a></li>
+        <li><i class="fas fa-user"></i><a href="add_employee.html">Add Employee</a></li>
+        <li><i class="fas fa-times"></i><a href="layoff_employee.html">Layoff Employee</a></li>
+        <li><i class="fas fa-users"></i><a href="view_employees.html">view all Employees</a></li>
+        <li><i class="fas fa-car"></i><a href="admin_view_cars.html">view cars by car-status</a></li>
+      </div>
+    </section>
+
+    <section id="inteface">
+      <div class="navigation">
+        <div class="n1">
+          <div class="search">
+            <i class="fas fa-search"></i>
+            <input type="text" name="search" id="search" placeholder="search" />
+          </div>
+        </div>
+        <div class="profile">
+          <i class="fas fa-bell"></i>
+         <span>admin user</span>
+        </div>
+      </div>
+      <h3 class="i-name">Supervisor Dashboard</h3>
+      <div class="values">
+        <div class="val-box">
+            <form >
+                <span ><i class="fas fa-user"></i><h3 style="display: inline;">Choose the car-status</h3></span>
+
+                <div>
+                    <label>
+                <p>Car States</p>
+            </label>
+                </div>
+        <div class="update-input">
+            <select name="car-status" id="car-status">
+              <option value="PRE_WASH">Pre-Wash phase</option>
+              <option value="WASHING">Washing phase</option>
+              <option value="COMPLETED">Completed phase</option>
+            </select>
+        </div>
+
+            
+                <button type="submit" onclick="findAllCarsByState(event)" >find all</button>
+            
+
+            <p>This will get all cars that are in the specified status</p>
+            
+            </form>            
+        </div>
+      </div>
+      </div>
+    </section>
+
+</body>
+</html>

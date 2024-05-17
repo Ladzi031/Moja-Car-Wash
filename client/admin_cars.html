@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+    />
+    <link rel="stylesheet" href="css/admin.css" />
+
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <section id="menu">
+      <div class="logo">
+        <div id="logo"></div>
+        <h2>Moja-CarWash</h2>
+      </div>
+      <div class="items">
+        <li>
+          <i class="fas fa-chart-pie"></i><a href="admin_view.html">Home</a>
+        </li>
+        <li>
+          <i class="fas fa-check"></i><a href="update_car.html">Sign Off Car</a>
+        </li>
+        <li>
+          <i class="fas fa-user"></i
+          ><a href="add_employee.html">Add Employee</a>
+        </li>
+        <li>
+          <i class="fas fa-times"></i
+          ><a href="layoff_employee.html">Layoff Employee</a>
+        </li>
+        <li>
+          <i class="fas fa-users"></i
+          ><a href="view_employees.html">view all Employees</a>
+        </li>
+        <li>
+          <i class="fas fa-car"></i
+          ><a href="admin_view_cars.html">view cars by car-status</a>
+        </li>
+      </div>
+    </section>
+
+    <section id="inteface">
+      <div class="navigation">
+        <div class="n1">
+          <div class="search">
+            <i class="fas fa-search"></i>
+            <input type="text" name="search" id="search" placeholder="search" />
+          </div>
+        </div>
+        <div class="profile">
+          <i class="fas fa-bell"></i>
+          <span>admin user</span>
+        </div>
+      </div>
+      <h3 class="i-name">Supervisor Dashboard</h3>
+      <div class="values">
+        <div class="val-box">
+          <i class="fas fa-users"></i>
+          <div>
+            <h3>8,267</h3>
+            <span>New Users</span>
+          </div>
+        </div>
+        <div class="val-box">
+          <i class="fas fa-users"></i>
+          <div>
+            <h3>8,267</h3>
+            <span>New Users</span>
+          </div>
+        </div>
+        <div class="val-box">
+          <i class="fas fa-users"></i>
+          <div>
+            <h3>8,267</h3>
+            <span>New Users</span>
+          </div>
+        </div>
+        <div class="val-box">
+          <i class="fas fa-users"></i>
+          <div>
+            <h3>8,267</h3>
+            <span>New Users</span>
+          </div>
+        </div>
+      </div>
+      <div class="board">
+        <table width="100%">
+          <thead>
+            <tr>
+              <td>customer info</td>
+              <td>car-tag</td>
+              <td>car-status</td>
+              <td>choosen-wash</td>
+              <td></td>
+            </tr>
+          </thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <script>
+      const tbody = document.querySelector("tbody");
+      let data = JSON.parse(localStorage.getItem("data"));      
+        generateRows(data);
+      // localStorage.removeItem("data");
+
+      function generateRows(data) {  
+        let rowsHTML = "";
+        data.forEach((entry) => {
+          rowsHTML += `
+        <tr>
+          <td class="people">
+            <div class="people-de">
+              <h5>${entry.name}</h5>
+              <div>
+                <p>${entry.email}</p>
+                <p>${entry.contactNumber}</p>
+              </div>
+            </div>
+          </td>
+          <td class="car-tag">
+            <p>${entry.uuid}</p>
+          </td>
+          <td class="car-status active">
+            <p>${entry.carState}</p>
+          </td>
+          <td class="choosen-wash">
+            <p>${entry.preferredWash}</p>
+          </td>
+          <td class="edit">
+            <a href="#">Edit</a>
+          </td>
+        </tr>
+      `;
+        });
+        tbody.innerHTML = rowsHTML;
+      }
+    </script>
+  </body>
+</html>

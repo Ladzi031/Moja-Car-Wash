@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="css/updateAdmin.css">
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+    />
+    
+    <title>Document</title>
+</head>
+<body>
+
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+      function addEmployee(event) {
+        event.preventDefault();
+        console.log(event);
+      
+        let formData = {
+          name: document.getElementById("name").value,
+        };
+
+        if (!formData.name) {
+          alert("Please fill out all required fields.");
+          return;
+        }
+       
+        axios
+          .post("http://localhost:8181/admin/employees", formData, {
+            headers: { Authorization: "Bearer " + accesToken },
+          })
+          .then((response) => {
+            // alert and redirect...
+            console.log("Response from server:", response.data);
+            alert("employee added");
+            window.location.href = "admin_view.html";
+          })
+          .catch((error) => {
+            
+            console.error("Request failed:", error);
+            
+            alert("Failed to submit the form. Please try again later.");
+          });
+      }
+    </script>
+
+    <section id="menu">
+      <div class="logo">
+        <div id="logo"></div>
+        <h2>Moja-CarWash</h2>
+      </div>
+      <div class="items">
+        <li><i class="fas fa-chart-pie"></i><a href="admin_view.html">Home</a></li>
+        <li><i class="fas fa-check"></i><a href="update_car.html">Check Off Car</a></li>
+        <li><i class="fas fa-user"></i><a href="add_employee.html">Add Employee</a></li>
+        <li><i class="fas fa-times"></i><a href="layoff_employee.html">Layoff Employee</a></li>
+        <li><i class="fas fa-users"></i><a href="view_employees.html">view all Employees</a></li>
+        <li><i class="fas fa-car"></i><a href="admin_view_cars.html">view cars by car-status</a></li>
+      </div>
+    </section>
+
+    <section id="inteface">
+      <div class="navigation">
+        <div class="n1">
+          <div class="search">
+            <i class="fas fa-search"></i>
+            <input type="text" name="search" id="search" placeholder="search" />
+          </div>
+        </div>
+        <div class="profile">
+          <i class="fas fa-bell"></i>
+         <span>admin user</span>
+        </div>
+      </div>
+      <h3 class="i-name">Supervisor Dashboard</h3>
+      <div class="values">
+        <div class="val-box">
+            <form >
+                <span ><i class="fas fa-user"></i><h3 style="display: inline;">Add Employee</h3></span>
+
+                <div>
+                    <label>
+                <p>Employee name</p>
+            </label>
+                </div>
+        <div class="update-input">
+            <input type="text" name="name" id="name" placeholder="e.g: john" />
+        </div>
+
+            
+                <button type="submit" onclick="addEmployee(event)" >Add</button>
+            
+
+            <p>This will register the employee with the carwashing system</p>
+            <p>for task-scheduling and ticketing</p>
+            </form>            
+        </div>
+      </div>
+      </div>
+    </section>
+
+</body>
+</html>

@@ -1,0 +1,222 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+a {
+    text-decoration: none;
+  color: rgb(134 141 151);  
+}
+body {
+  width: 100%;
+  background: #e5e7eb;
+  position: relative;
+  height: 100%;
+  display: flex;
+}
+#menu {
+  background-color: #111827;
+  width: 300px;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+#menu .logo {
+  display: flex;
+  padding: 30px 0px 0px 30px;
+  align-items: center;
+  align-content: space-between;
+  margin-right: 20px;
+}
+#menu #logo {
+  width: 40px;
+  background-color: azure;
+  height: 40px;
+  border-radius: 50%;
+  display: none;
+}
+#menu h2 {
+  color: #52b5ed;
+}
+#menu .items li {
+  list-style: none;
+  padding: 15px 0px;
+  transition: 0.3s ease;
+}
+
+#menu .items li i:hover {
+  background: #253047;
+  cursor: pointer;
+}
+
+#menu .items li:hover i {
+  color: #f3f4f6;
+}
+#menu .items li:hover i,
+#menu .items li:hover a {
+  color: #f3f4f6;
+}
+
+#menu .items li i {
+  color: rgb(134 141 151);
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 14px;
+  margin: 0 10px 0 25px;
+}
+#menu .items li i a {
+  text-decoration: none;
+  color: rgb(134 141 151);
+  font-weight: 300px;
+  transition: 0.3s ease;
+}
+.items li {
+  color: rgb(134 141 151);
+}
+#inteface {
+  width: calc(100% - 300px);
+  position: relative;
+  margin-left: 300px;
+}
+
+#inteface .navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  padding: 15px 30px;
+  border-bottom: 3px solid #52b5ed;
+}
+
+#inteface .navigation .search {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px 14px;
+  border: 1px solid #d7dbe6;
+  border-radius: 4px;
+}
+#inteface .navigation .search i {
+  margin-right: 5px;
+}
+#inteface .navigation .search input {
+  border: none;
+  outline: none;
+  font-size: 14px;
+}
+#inteface .navigation .profile {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+#inteface .navigation .profile i {
+  margin-right: 20px;
+  font-size: 19px;
+  font-weight: 400;
+}
+#inteface .navigation .profile i img {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.i-name {
+  color: #444a53;
+  padding: 30px 30px 0 30px;
+  font-size: 24px;
+  font-weight: 700;
+}
+.values {
+  padding: 30px 30px 0 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.values .val-box {
+  background: #fff;
+  width: 235px;
+  padding: 16px 20px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.values .val-box i {
+  font-size: 25px;
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  color: #fff;
+  background: #52b5ed;
+  margin-right: 15px;
+  border-radius: 50%;
+}
+.values .val-box h3 {
+  font-size: 18px;
+  font-weight: 600;
+}
+.values .val-box span {
+  font-size: 15px;
+  color: #828997;
+}
+.board {
+  width: 94%;
+  margin: 30px 0 30px 30px;
+  overflow: auto;
+  background: #fff;
+  border-radius: 8px;
+}
+.board h5 {
+  font-weight: 600;
+  font-size: 14px;
+}
+.board p {
+  font-weight: 400;
+  font-size: 13px;
+  color: #787d8d;
+}
+.board .people-de {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+table {
+  border-collapse: collapse;
+}
+
+tr {
+  border-bottom: 1px solid #eef0f3;
+}
+thead td {
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 400;
+  background: #f9fafb;
+  text-align: center;
+  padding: 15px;
+}
+tbody tr td {
+  padding: 10px 15px;
+}
+.active p {
+  background: #d7fada;
+  padding: 2px 10px;
+  display: inline-block;
+  border-radius: 40px;
+  color: #2b2b2b;
+}
+.edit a {
+  text-decoration: none;
+  font-size: 14px;
+  color: #554cd1;
+  font-weight: 600;
+}

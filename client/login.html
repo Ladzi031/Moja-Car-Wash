@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="css/login.css">
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+    />
+    
+    <title>Document</title>
+</head>
+<body>
+
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+      function authenticteUser(event) {
+        event.preventDefault();
+        console.log(event);
+      
+        let formData = {
+          username: document.getElementById("username").value,
+          password: document.getElementById("password").value
+        };
+
+        if (!formData.username || !formData.password) {
+          alert("Please fill out all required fields.");
+          localStorage.removeItem("token");
+          return;
+        }
+        axios
+          .post("http://localhost:8181/authenticate", formData)
+          .then((response) => {
+            // test this...
+            const accesToken = response.data.token;
+            localStorage.setItem("token", accesToken);
+            // store token in localStorage and redirect... 
+            // subsequent request in the the admin panel will make use of this token...
+            // display logout button conditionally!...
+            console.log("Response from server:", response.data);
+            alert("correct credentials..."+ response.data);
+            window.location.href = "admin_view.html";
+          })
+          .catch((error) => {
+            console.error("Request failed:", error);
+            alert("bad credentials");
+          });
+      }
+    </script>
+    <section id="inteface">
+      </div>
+      <h3 class="i-name">Supervisor Dashboard Login</h3>
+      <div class="values">
+        <div class="val-box">
+            <form >
+                <span ><i class="fas fa-user"></i><h3 style="display: inline;">Login</h3></span>
+
+                <div>
+                    <label>
+                <p>username</p>
+            </label>
+                </div>
+        <div class="update-input">
+            <input type="text" name="username" id="username" placeholder="username" />
+        </div>
+                        <div>
+                    <label>
+                <p>password</p>
+            </label>
+                </div>
+        <div class="update-input">
+            <input type="text" name="password" id="password" placeholder="password" />
+        </div>
+                <button type="submit" onclick="authenticteUser(event)" >login</button>
+            </form>            
+        </div>
+      </div>
+      </div>
+    </section>
+</body>
+</html>

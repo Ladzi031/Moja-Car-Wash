@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900"
+      rel="stylesheet"
+    />
+    <title>display Appointment info</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #52b5ed; /* Light gray background */
+        color: #333333; /* Dark gray text */
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      const data = JSON.parse(localStorage.getItem("data"));
+      localStorage.removeItem("data");
+      console.log(data);
+    </script>
+    <div
+      class="container mx-auto d-flex justify-content-center align-items-center vh-100"
+    >
+      <div class="col mb-2 align-items-center">
+        <div class="col">
+          <div class="col-md-6">
+            <div class="card flex-md-row mb-4 box-shadow h-md-250">
+              <div class="card-body d-flex flex-column align-items-start">
+                <strong class="d-inline-block mb-2 text-primary">Car</strong>
+                <h3 class="mb-0">
+                  <a class="text-dark" href="#">Car appointment Info</a>
+                </h3>
+                <div class="mb-1 text-muted">Nov 12</div>
+                <p class="card-text mb-auto">
+                  This is a wider card with supporting text below as a natural
+                  lead-in to additional content.
+                </p>
+              </div>
+              <img
+                src="img/car-1.jpg"
+                class="card-img-right flex-auto d-none d-md-block img-fluid"
+                style="width: 70%; height: 50vh"
+                alt="Card image cap"
+              />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card flex-md-row mb-4 box-shadow h-md-250">
+              <div class="card-body d-flex flex-column align-items-start">
+                <strong class="d-inline-block mb-2 text-success"
+                  >employee</strong
+                >
+                <h3 class="mb-0" id="car-owner">
+                  <a class="text-dark" href="#"
+                    >details of employee washing the car</a
+                  >
+                </h3>
+                <div class="mb-1 text-muted">Date here</div>
+                <p class="card-text mb-auto">some persoalised message.</p>
+              </div>
+              <img
+                src="img/worker2.jpg"
+                class="card-img-right flex-auto d-none d-md-block img-fluid"
+                style="width: 40%; height: 50vh"
+                alt="Card image cap"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--
+        buttons for confirming...
+    -->
+  </body>
+</html>

@@ -18,6 +18,3 @@
 --> manage employees. (add and delete)  
 --> oversee cars. (check off car for completion, check on car progress/state)  
 
-This project is part of an effort of learning spring-boot/java.  
-will probably move the front-end to Angular.  
-

@@ -4,6 +4,7 @@ import com.assignment.moja_car_wash.domain.entities.CarEntity;
 import com.assignment.moja_car_wash.domain.entities.EmployeeEntity;
 import com.assignment.moja_car_wash.repository.CarRepository;
 import com.assignment.moja_car_wash.services.CarWashSupervisorService;
+import com.assignment.moja_car_wash.services.EmailService;
 import com.assignment.moja_car_wash.services.EmployeeService;
 import com.assignment.moja_car_wash.states.CarState;
 import org.springframework.stereotype.Service;
@@ -20,9 +21,12 @@ public class SupervisorServiceImpl implements CarWashSupervisorService {
 
     private final EmployeeService employeeService;
 
-    public SupervisorServiceImpl(CarRepository carRepository, EmployeeService employeeService) {
+    private final EmailService emailService;
+
+    public SupervisorServiceImpl(CarRepository carRepository, EmployeeService employeeService, EmailService emailService) {
         this.carRepository = carRepository;
         this.employeeService = employeeService;
+        this.emailService = emailService;
     }
 
     @Override
@@ -34,6 +38,7 @@ public class SupervisorServiceImpl implements CarWashSupervisorService {
         if (car.isPresent()) {
             CarEntity customerCar = car.get();
             customerCar.setIsDoneWashing(isDoneWashing);
+            emailService.notify(customerCar); // let em know wassup!
             carRepository.save(customerCar);
         }
     }

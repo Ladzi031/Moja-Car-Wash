@@ -4,9 +4,9 @@ import com.assignment.moja_car_wash.domain.entities.CarEntity;
 import com.assignment.moja_car_wash.domain.entities.EmployeeEntity;
 import com.assignment.moja_car_wash.services.BusinessOperations;
 import com.assignment.moja_car_wash.services.CustomerService;
+import com.assignment.moja_car_wash.services.EmailService;
 import com.assignment.moja_car_wash.services.EmployeeService;
 import com.assignment.moja_car_wash.states.CarState;
-import lombok.extern.java.Log;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -14,21 +14,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@Log
 public class NormalBusinessOperationsImpl implements BusinessOperations {
     private final CustomerService customerService;
     private final EmployeeService employeeService;
 
+    private final List<Long> employeeIdList = new ArrayList<>();
+    private final List<CarEntity> cars = new ArrayList<>();
+
     public NormalBusinessOperationsImpl(CustomerService customerService, EmployeeService employeeService) {
         this.customerService = customerService;
         this.employeeService = employeeService;
-    }
+        }
 
-    @Scheduled(fixedRate = 5000L) // 600000L  , every ten minutes
+    // 600000L --> every ten minutes
+
+    @Scheduled(fixedRate = 5000L)
     public void taskScheduler() {
 
-        List<Long> employeeIdList = new ArrayList<>();
-        List<CarEntity> cars = new ArrayList<>();
         List<CarEntity> customerCars = customerService.findAllByCarState(CarState.WASHING.toString());
 
         customerCars.stream()

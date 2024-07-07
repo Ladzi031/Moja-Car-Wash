@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Set;
-
+/**
+ Hypothetical super-users of the application...
+*/
 @Service
 public class CreateSuperUser {
     private final SupervisorRepository supervisorRepository;

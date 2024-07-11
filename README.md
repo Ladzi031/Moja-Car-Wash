@@ -1,20 +1,19 @@
-# A Simple Car-Wash managment application  
-
+# A Car-Wash managment application    
+* * A car wash management application for small to medium size businesses in local townships designed to be user friendly to it's customers and a nifty management tool for car-wash owners.
+    
 # some of the tools used  
- --> Spring-boot(web, jpa, security)  
- --> postgres  
- --> Docker  
- --> Jwt  
+ * Spring-boot  
+ * postgres  
+ * Docker   
 
-# Users  
---> Customer (NO login required)  
---> Car-Wash-supervisors (manage the day to day activities of a car-wash spot)  
+## Application Users  
+* Customer. 
+* Supervisor.  
 
-# Customer-functions  
---> set an appointment.  
---> track the progress/state of the Car.  
+## Customer functions  
+* Set an appointment.
+* Track the progress/state of the Car.  
 
-# Car-Wash-supervisor functions  
---> manage employees. (add and delete)  
---> oversee cars. (check off car for completion, check on car progress/state)  
-
+## Supervisor functions  
+* manage employees.    
+* oversee cars.   

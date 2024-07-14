@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-@Service
 @Log
+@Service
 public class EmailServiceImpl implements EmailService {
     public static final String SUBJECT = "Moja car-wash appointment";
     @Value("${spring.mail.username}")
@@ -47,7 +47,7 @@ public class EmailServiceImpl implements EmailService {
 
             mailSender.send(message);
 
-            log.info("message sent!");
+            // log.info("message sent!");
         }
         // else customer submitted an invalid email...
     }
